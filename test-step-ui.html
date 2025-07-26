@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Step UI - Business Card Builder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes ping {
+            75%, 100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+        .animate-ping {
+            animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Enhanced Step UI</h1>
+            <p class="text-xl text-gray-600 mb-6">Professional multi-step interface with progress tracking</p>
+            
+            <div class="bg-white rounded-xl shadow-lg p-6 max-w-3xl mx-auto">
+                <h2 class="text-2xl font-semibold mb-4">✨ Step UI Features</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                    <div>
+                        <h3 class="font-semibold text-lg mb-3">🖥️ Desktop Features</h3>
+                        <ul class="space-y-2 text-sm">
+                            <li>✅ Animated progress line</li>
+                            <li>✅ 3D hover effects on step circles</li>
+                            <li>✅ Gradient backgrounds and shadows</li>
+                            <li>✅ Completion checkmarks</li>
+                            <li>✅ Active step pulse animation</li>
+                            <li>✅ Clickable step navigation</li>
+                            <li>✅ Color-coded states (active, completed, disabled)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg mb-3">📱 Mobile Features</h3>
+                        <ul class="space-y-2 text-sm">
+                            <li>✅ Compact progress bar</li>
+                            <li>✅ Percentage completion</li>
+                            <li>✅ Current step title & description</li>
+                            <li>✅ Touch-friendly interface</li>
+                            <li>✅ Responsive design</li>
+                            <li>✅ Space-efficient layout</li>
+                            <li>✅ Clear visual hierarchy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step UI Examples -->
+        <div class="space-y-12">
+            <!-- Example 1: Active Step 1 -->
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <h3 class="text-xl font-semibold mb-6 text-center">Step 1 - Choose Template (Active)</h3>
+                
+                <!-- Mobile View -->
+                <div class="md:hidden mb-8">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-600">Step 1 of 4</span>
+                        <span class="text-sm text-gray-500">25% Complete</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-gradient-to-r from-primary-500 to-primary-600 h-2 rounded-full transition-all duration-500 ease-out" style="width: 25%"></div>
+                    </div>
+                    <div class="mt-3">
+                        <h3 class="text-lg font-semibold text-gray-900">Choose Template</h3>
+                        <p class="text-sm text-gray-600">Select a professional template</p>
+                    </div>
+                </div>
+
+                <!-- Desktop View -->
+                <div class="hidden md:block">
+                    <div class="flex items-center justify-between relative">
+                        <!-- Progress Line -->
+                        <div class="absolute top-6 left-0 right-0 h-1 bg-gray-200 rounded-full z-0">
+                            <div class="h-full bg-gradient-to-r from-primary-500 to-primary-600 rounded-full transition-all duration-700 ease-out" style="width: 0%"></div>
+                        </div>
+                        
+                        <!-- Step 1 - Active -->
+                        <div class="relative z-10 flex flex-col items-center group">
+                            <button class="relative w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 transform group-hover:scale-110 bg-gradient-to-br from-primary-500 to-primary-600 text-white shadow-lg shadow-primary-500/25 ring-4 ring-primary-100">
+                                <span>1</span>
+                                <div class="absolute inset-0 rounded-full bg-primary-400 animate-ping opacity-20"></div>
+                            </button>
+                            <div class="mt-3 text-center max-w-32">
+                                <h3 class="text-sm font-semibold transition-colors duration-200 text-primary-700">Choose Template</h3>
+                                <p class="text-xs mt-1 transition-colors duration-200 text-primary-600">Select a professional template</p>
+                            </div>
+                            <div class="absolute -top-2 -right-2 w-4 h-4 bg-primary-500 rounded-full flex items-center justify-center">
+                                <div class="w-2 h-2 bg-white rounded-full"></div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 - Inactive -->
+                        <div class="relative z-10 flex flex-col items-center group">
+                            <button class="relative w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 transform group-hover:scale-110 bg-gray-100 border-2 border-gray-200 text-gray-400 cursor-not-allowed">
+                                <span>2</span>
+                            </button>
+                            <div class="mt-3 text-center max-w-32">
+                                <h3 class="text-sm font-semibold transition-colors duration-200 text-gray-600">Add Content</h3>
+                                <p class="text-xs mt-1 transition-colors duration-200 text-gray-500">Fill in your information</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 - Inactive -->
+                        <div class="relative z-10 flex flex-col items-center group">
+                            <button class="relative w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 transform group-hover:scale-110 bg-gray-100 border-2 border-gray-200 text-gray-400 cursor-not-allowed">
+                                <span>3</span>
+                            </button>
+                            <div class="mt-3 text-center max-w-32">
+                                <h3 class="text-sm font-semibold transition-colors duration-200 text-gray-600">Customize Design</h3>
+                                <p class="text-xs mt-1 transition-colors duration-200 text-gray-500">Personalize colors and fonts</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 4 - Inactive -->
+                        <div class="relative z-10 flex flex-col items-center group">
+                            <button class="relative w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 transform group-hover:scale-110 bg-gray-100 border-2 border-gray-200 text-gray-400 cursor-not-allowed">
+                                <span>4</span>
+                            </button>
+                            <div class="mt-3 text-center max-w-32">
+                                <h3 class="text-sm font-semibold transition-colors duration-200 text-gray-600">Preview & Save</h3>
+                                <p class="text-xs mt-1 transition-colors duration-200 text-gray-500">Review and save your card</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example 2: Step 2 Active, Step 1 Completed -->
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <h3 class="text-xl font-semibold mb-6 text-center">Step 2 - Add Content (Active, Step 1 Completed)</h3>
+                
+                <!-- Mobile View -->
+                <div class="md:hidden mb-8">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-600">Step 2 of 4</span>
+                        <span class="text-sm text-gray-500">50% Complete</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-gradient-to-r from-primary-500 to-primary-600 h-2 rounded-full transition-all duration-500 ease-out" style="width: 50%"></div>
+                    </div>
+                    <div class="mt-3">
+                        <h3 class="text-lg font-semibold text-gray-900">Add Content</h3>
+                        <p class="text-sm text-gray-600">Fill in your information</p>
+                    </div>
+                </div>
+
+                <!-- Desktop View -->
+                <div class="hidden md:block">
+                    <div class="flex items-center justify-between relative">
+                        <!-- Progress Line -->
+                        <div class="absolute top-6 left-0 right-0 h-1 bg-gray-200 rounded-full z-0">
+                            <div class="h-full bg-gradient-to-r from-primary-500 to-primary-600 rounded-full transition-all duration-700 ease-out" style="width: 33%"></div>
+                        </div>
+                        
+                        <!-- Step 1 - Completed -->
+                        <div class="relative z-10 flex flex-col items-center group">
+                            <button class="relative w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 transform group-hover:scale-110 bg-gradient-to-br from-green-500 to-green-600 text-white shadow-lg shadow-green-500/25">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div class="mt-3 text-center max-w-32">
+                                <h3 class="text-sm font-semibold transition-colors duration-200 text-green-700">Choose Template</h3>
+                                <p class="text-xs mt-1 transition-colors duration-200 text-green-600">Select a professional template</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 - Active -->
+                        <div class="relative z-10 flex flex-col items-center group">
+                            <button class="relative w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 transform group-hover:scale-110 bg-gradient-to-br from-primary-500 to-primary-600 text-white shadow-lg shadow-primary-500/25 ring-4 ring-primary-100">
+                                <span>2</span>
+                                <div class="absolute inset-0 rounded-full bg-primary-400 animate-ping opacity-20"></div>
+                            </button>
+                            <div class="mt-3 text-center max-w-32">
+                                <h3 class="text-sm font-semibold transition-colors duration-200 text-primary-700">Add Content</h3>
+                                <p class="text-xs mt-1 transition-colors duration-200 text-primary-600">Fill in your information</p>
+                            </div>
+                            <div class="absolute -top-2 -right-2 w-4 h-4 bg-primary-500 rounded-full flex items-center justify-center">
+                                <div class="w-2 h-2 bg-white rounded-full"></div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 - Available -->
+                        <div class="relative z-10 flex flex-col items-center group">
+                            <button class="relative w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 transform group-hover:scale-110 bg-white border-2 border-gray-300 text-gray-600 hover:border-primary-300 hover:text-primary-600 shadow-md">
+                                <span>3</span>
+                            </button>
+                            <div class="mt-3 text-center max-w-32">
+                                <h3 class="text-sm font-semibold transition-colors duration-200 text-gray-600">Customize Design</h3>
+                                <p class="text-xs mt-1 transition-colors duration-200 text-gray-500">Personalize colors and fonts</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 4 - Available -->
+                        <div class="relative z-10 flex flex-col items-center group">
+                            <button class="relative w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 transform group-hover:scale-110 bg-white border-2 border-gray-300 text-gray-600 hover:border-primary-300 hover:text-primary-600 shadow-md">
+                                <span>4</span>
+                            </button>
+                            <div class="mt-3 text-center max-w-32">
+                                <h3 class="text-sm font-semibold transition-colors duration-200 text-gray-600">Preview & Save</h3>
+                                <p class="text-xs mt-1 transition-colors duration-200 text-gray-500">Review and save your card</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example 3: All Steps Completed -->
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <h3 class="text-xl font-semibold mb-6 text-center">Step 4 - Preview & Save (All Steps Completed)</h3>
+                
+                <!-- Mobile View -->
+                <div class="md:hidden mb-8">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-600">Step 4 of 4</span>
+                        <span class="text-sm text-green-600 font-semibold">100% Complete ✓</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-gradient-to-r from-green-500 to-green-600 h-2 rounded-full transition-all duration-500 ease-out" style="width: 100%"></div>
+                    </div>
+                    <div class="mt-3">
+                        <h3 class="text-lg font-semibold text-gray-900">Preview & Save</h3>
+                        <p class="text-sm text-gray-600">Review and save your card</p>
+                    </div>
+                </div>
+
+                <!-- Desktop View -->
+                <div class="hidden md:block">
+                    <div class="flex items-center justify-between relative">
+                        <!-- Progress Line - Complete -->
+                        <div class="absolute top-6 left-0 right-0 h-1 bg-gray-200 rounded-full z-0">
+                            <div class="h-full bg-gradient-to-r from-green-500 to-green-600 rounded-full transition-all duration-700 ease-out" style="width: 100%"></div>
+                        </div>
+                        
+                        <!-- All Steps - Completed -->
+                        <div class="relative z-10 flex flex-col items-center group">
+                            <button class="relative w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 transform group-hover:scale-110 bg-gradient-to-br from-green-500 to-green-600 text-white shadow-lg shadow-green-500/25">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div class="mt-3 text-center max-w-32">
+                                <h3 class="text-sm font-semibold transition-colors duration-200 text-green-700">Choose Template</h3>
+                                <p class="text-xs mt-1 transition-colors duration-200 text-green-600">Select a professional template</p>
+                            </div>
+                        </div>
+
+                        <div class="relative z-10 flex flex-col items-center group">
+                            <button class="relative w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 transform group-hover:scale-110 bg-gradient-to-br from-green-500 to-green-600 text-white shadow-lg shadow-green-500/25">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div class="mt-3 text-center max-w-32">
+                                <h3 class="text-sm font-semibold transition-colors duration-200 text-green-700">Add Content</h3>
+                                <p class="text-xs mt-1 transition-colors duration-200 text-green-600">Fill in your information</p>
+                            </div>
+                        </div>
+
+                        <div class="relative z-10 flex flex-col items-center group">
+                            <button class="relative w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 transform group-hover:scale-110 bg-gradient-to-br from-green-500 to-green-600 text-white shadow-lg shadow-green-500/25">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div class="mt-3 text-center max-w-32">
+                                <h3 class="text-sm font-semibold transition-colors duration-200 text-green-700">Customize Design</h3>
+                                <p class="text-xs mt-1 transition-colors duration-200 text-green-600">Personalize colors and fonts</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 4 - Active Final -->
+                        <div class="relative z-10 flex flex-col items-center group">
+                            <button class="relative w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 transform group-hover:scale-110 bg-gradient-to-br from-primary-500 to-primary-600 text-white shadow-lg shadow-primary-500/25 ring-4 ring-primary-100">
+                                <span>4</span>
+                                <div class="absolute inset-0 rounded-full bg-primary-400 animate-ping opacity-20"></div>
+                            </button>
+                            <div class="mt-3 text-center max-w-32">
+                                <h3 class="text-sm font-semibold transition-colors duration-200 text-primary-700">Preview & Save</h3>
+                                <p class="text-xs mt-1 transition-colors duration-200 text-primary-600">Review and save your card</p>
+                            </div>
+                            <div class="absolute -top-2 -right-2 w-4 h-4 bg-primary-500 rounded-full flex items-center justify-center">
+                                <div class="w-2 h-2 bg-white rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Demo -->
+        <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl shadow-lg p-8 mt-12">
+            <h3 class="text-2xl font-semibold mb-6 text-center text-gray-900">🎮 Interactive Demo</h3>
+            <div class="text-center mb-6">
+                <p class="text-gray-700 mb-4">Click the buttons below to see different step states:</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button onclick="showStep(1)" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">Step 1</button>
+                    <button onclick="showStep(2)" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">Step 2</button>
+                    <button onclick="showStep(3)" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">Step 3</button>
+                    <button onclick="showStep(4)" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">Step 4</button>
+                </div>
+            </div>
+            
+            <div id="interactive-demo" class="bg-white rounded-lg p-6">
+                <!-- Interactive step UI will be rendered here -->
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center mt-12 text-gray-600">
+            <p>✨ Business Card Builder - Professional step-by-step interface</p>
+            <p class="text-sm mt-2">Enhanced UI with mobile responsiveness and smooth animations</p>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+
+        function showStep(step) {
+            currentStep = step;
+            renderInteractiveDemo();
+        }
+
+        function renderInteractiveDemo() {
+            const demo = document.getElementById('interactive-demo');
+            const steps = [
+                { number: 1, title: 'Choose Template', description: 'Select a professional template' },
+                { number: 2, title: 'Add Content', description: 'Fill in your information' },
+                { number: 3, title: 'Customize Design', description: 'Personalize colors and fonts' },
+                { number: 4, title: 'Preview & Save', description: 'Review and save your card' }
+            ];
+
+            const progressPercent = ((currentStep - 1) / (steps.length - 1)) * 100;
+
+            demo.innerHTML = `
+                <!-- Mobile View -->
+                <div class="md:hidden mb-8">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-600">Step ${currentStep} of ${steps.length}</span>
+                        <span class="text-sm text-gray-500">${Math.round((currentStep / steps.length) * 100)}% Complete</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-gradient-to-r from-primary-500 to-primary-600 h-2 rounded-full transition-all duration-500 ease-out" style="width: ${(currentStep / steps.length) * 100}%"></div>
+                    </div>
+                    <div class="mt-3">
+                        <h3 class="text-lg font-semibold text-gray-900">${steps[currentStep - 1].title}</h3>
+                        <p class="text-sm text-gray-600">${steps[currentStep - 1].description}</p>
+                    </div>
+                </div>
+
+                <!-- Desktop View -->
+                <div class="hidden md:block">
+                    <div class="flex items-center justify-between relative">
+                        <div class="absolute top-6 left-0 right-0 h-1 bg-gray-200 rounded-full z-0">
+                            <div class="h-full bg-gradient-to-r from-primary-500 to-primary-600 rounded-full transition-all duration-700 ease-out" style="width: ${progressPercent}%"></div>
+                        </div>
+                        
+                        ${steps.map((step, index) => {
+                            const isActive = currentStep === step.number;
+                            const isCompleted = currentStep > step.number;
+                            
+                            return `
+                                <div class="relative z-10 flex flex-col items-center group">
+                                    <button class="relative w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 transform group-hover:scale-110 ${
+                                        isCompleted 
+                                            ? 'bg-gradient-to-br from-green-500 to-green-600 text-white shadow-lg shadow-green-500/25' 
+                                            : isActive 
+                                                ? 'bg-gradient-to-br from-primary-500 to-primary-600 text-white shadow-lg shadow-primary-500/25 ring-4 ring-primary-100'
+                                                : 'bg-white border-2 border-gray-300 text-gray-600 hover:border-primary-300 hover:text-primary-600 shadow-md'
+                                    }">
+                                        ${isCompleted 
+                                            ? '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>'
+                                            : `<span>${step.number}</span>`
+                                        }
+                                        ${isActive ? '<div class="absolute inset-0 rounded-full bg-primary-400 animate-ping opacity-20"></div>' : ''}
+                                    </button>
+                                    <div class="mt-3 text-center max-w-32">
+                                        <h3 class="text-sm font-semibold transition-colors duration-200 ${
+                                            isActive ? 'text-primary-700' : isCompleted ? 'text-green-700' : 'text-gray-600'
+                                        }">${step.title}</h3>
+                                        <p class="text-xs mt-1 transition-colors duration-200 ${
+                                            isActive ? 'text-primary-600' : isCompleted ? 'text-green-600' : 'text-gray-500'
+                                        }">${step.description}</p>
+                                    </div>
+                                    ${isActive ? '<div class="absolute -top-2 -right-2 w-4 h-4 bg-primary-500 rounded-full flex items-center justify-center"><div class="w-2 h-2 bg-white rounded-full"></div></div>' : ''}
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize demo
+        renderInteractiveDemo();
+    </script>
+</body>
+</html> 

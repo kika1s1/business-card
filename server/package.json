@@ -1,0 +1,22 @@
+{
+  "name": "business-card-fake-server",
+  "version": "1.0.0",
+  "description": "Fake JSON server for Business Card Builder development",
+  "main": "middleware.js",
+  "scripts": {
+    "start": "json-server --watch db.json --routes routes.json --middlewares middleware.js --port 3001 --host 0.0.0.0",
+    "dev": "json-server --watch db.json --routes routes.json --middlewares middleware.js --port 3001 --host 0.0.0.0"
+  },
+  "dependencies": {
+    "json-server": "^0.17.4"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "json-server",
+    "fake-api",
+    "development",
+    "business-card"
+  ],
+  "author": "",
+  "license": "MIT"
+} 

@@ -1,0 +1,185 @@
+/* Google Fonts import must come first */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global styles */
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+/* Custom component styles */
+@layer components {
+  .btn-primary {
+    @apply bg-primary-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-primary-700 transition-colors duration-200;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-medium hover:bg-gray-300 transition-colors duration-200;
+  }
+  
+  .input-field {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500;
+  }
+  
+  .card-shadow {
+    @apply shadow-lg hover:shadow-xl transition-shadow duration-300;
+  }
+
+  /* Credit Card Specific Styles */
+  .credit-card {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+  }
+
+  .credit-card-face {
+    backface-visibility: hidden;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .credit-card:hover .credit-card-face {
+    transform: rotateY(2deg) rotateX(1deg);
+  }
+
+  .card-shimmer {
+    background: linear-gradient(
+      135deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 70%
+    );
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0%, 100% { transform: translateX(-100%); opacity: 0; }
+    50% { transform: translateX(100%); opacity: 1; }
+  }
+
+  .card-chip {
+    background: linear-gradient(135deg, #ffd700, #ffed4e, #fbbf24);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-chip::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+      transparent 30%, 
+      rgba(255,255,255,0.3) 50%, 
+      transparent 70%
+    );
+  }
+
+  .card-chip::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    background: #2d3748;
+    border-radius: 2px;
+    opacity: 0.1;
+  }
+
+  /* Text truncation for card content */
+  .card-text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+
+  .card-text-clamp {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Enhanced card background patterns */
+  .card-pattern-circles {
+    background-image: radial-gradient(circle at 20% 80%, rgba(255,255,255,0.05) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 20%, rgba(255,255,255,0.03) 0%, transparent 50%);
+  }
+
+  .card-gradient-overlay {
+    background: linear-gradient(135deg, 
+      rgba(255,255,255,0.1) 0%, 
+      transparent 50%, 
+      rgba(0,0,0,0.05) 100%
+    );
+  }
+
+  /* Input field enhancements */
+  .input-enhanced {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(229, 231, 235, 0.8);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .input-enhanced:focus {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-color: rgba(37, 99, 235, 0.6);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+  }
+
+  /* Card preview container */
+  .card-preview-container {
+    perspective: 1200px;
+    transform-style: preserve-3d;
+  }
+
+  .card-preview-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .card-preview-3d:hover {
+    transform: translateZ(20px) rotateY(5deg) rotateX(2deg);
+  }
+
+  /* Professional shadows */
+  .card-shadow-professional {
+    box-shadow: 
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06),
+      0 10px 25px -5px rgba(0, 0, 0, 0.1),
+      0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  }
+
+  .card-shadow-hover {
+    box-shadow: 
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04),
+      0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  }
+
+  /* Responsive text sizing */
+  @media (max-width: 768px) {
+    .card-text-responsive {
+      font-size: clamp(0.75rem, 2vw, 1rem);
+    }
+    
+    .card-title-responsive {
+      font-size: clamp(1rem, 3vw, 1.25rem);
+    }
+  }
+}

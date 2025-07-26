@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Style Business Card UI - Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Credit Card Specific Styles */
+        .credit-card {
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+
+        .credit-card-face {
+            backface-visibility: hidden;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .credit-card:hover .credit-card-face {
+            transform: translateZ(20px) rotateY(3deg) rotateX(1deg);
+        }
+
+        .card-shimmer {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .card-chip {
+            background: linear-gradient(135deg, #ffd700, #ffed4e, #fbbf24);
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-chip::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                transparent 30%, 
+                rgba(255,255,255,0.4) 50%, 
+                transparent 70%
+            );
+        }
+
+        .card-chip::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            background: linear-gradient(135deg, #1a202c, #2d3748);
+            border-radius: 2px;
+        }
+
+        .card-pattern {
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255,255,255,0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.03) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255,255,255,0.02) 0%, transparent 40%);
+        }
+
+        .card-text-shadow {
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* Tailwind config inline */
+        .perspective-1000 { perspective: 1000px; }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Credit Card Style Business Card UI</h1>
+            <p class="text-xl text-gray-600 mb-6">Professional business cards with realistic credit card proportions and styling</p>
+            
+            <div class="bg-white rounded-xl shadow-lg p-6 max-w-2xl mx-auto">
+                <h2 class="text-2xl font-semibold mb-4">✨ New Features</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+                    <ul class="space-y-2">
+                        <li>✅ Credit card proportions (1.6:1 aspect ratio)</li>
+                        <li>✅ Rounded corners like real cards</li>
+                        <li>✅ 3D hover effects and animations</li>
+                        <li>✅ Realistic chip design</li>
+                        <li>✅ Professional shadows and gradients</li>
+                    </ul>
+                    <ul class="space-y-2">
+                        <li>✅ Text overflow protection</li>
+                        <li>✅ Improved input field styling</li>
+                        <li>✅ Shimmer light effects</li>
+                        <li>✅ Better text visibility</li>
+                        <li>✅ Mobile responsive design</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card Examples -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <!-- Split Layout Card -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-lg font-semibold mb-4 text-center">Split Layout Template</h3>
+                <div class="flex justify-center">
+                    <div class="credit-card">
+                        <div class="credit-card-face w-96 h-60 relative cursor-pointer"
+                             style="background: linear-gradient(135deg, #1e3a8a, #3b82f6);">
+                            
+                            <!-- Background Pattern -->
+                            <div class="absolute inset-0 card-pattern"></div>
+                            
+                            <!-- Shimmer Effect -->
+                            <div class="card-shimmer"></div>
+                            
+                            <!-- Card Content -->
+                            <div class="relative flex h-full p-6 z-10">
+                                <!-- Left side -->
+                                <div class="flex-1 flex flex-col justify-between">
+                                    <!-- Top section with logo/initials -->
+                                    <div class="flex items-start justify-between">
+                                        <div class="w-14 h-14 rounded-xl flex items-center justify-center text-white font-bold text-lg"
+                                             style="background: linear-gradient(135deg, #7c3aed, #a855f7); box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);">
+                                            JD
+                                        </div>
+                                        <!-- Chip design -->
+                                        <div class="card-chip w-8 h-6"></div>
+                                    </div>
+
+                                    <!-- Name and Title -->
+                                    <div class="space-y-1">
+                                        <h2 class="font-bold leading-tight tracking-wide text-white text-xl card-text-shadow">
+                                            John Doe
+                                        </h2>
+                                        <p class="font-medium uppercase tracking-wider text-xs text-blue-200">
+                                            Senior Developer
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Right side - Contact Info -->
+                                <div class="flex-1 flex flex-col justify-center space-y-2 text-right">
+                                    <div class="space-y-1 text-xs font-medium text-blue-100">
+                                        <p class="font-semibold">Tech Solutions Inc.</p>
+                                        <p>john.doe@example.com</p>
+                                        <p class="font-mono tracking-wider">+1 (555) 123-4567</p>
+                                        <p>johndoe.dev</p>
+                                        <p class="text-xs leading-tight">123 Tech Street, SF, CA</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card shine effect -->
+                            <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Centered Layout Card -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-lg font-semibold mb-4 text-center">Centered Layout Template</h3>
+                <div class="flex justify-center">
+                    <div class="credit-card">
+                        <div class="credit-card-face w-96 h-60 relative cursor-pointer"
+                             style="background: linear-gradient(135deg, #064e3b, #059669);">
+                            
+                            <!-- Background Pattern -->
+                            <div class="absolute inset-0 card-pattern"></div>
+                            
+                            <!-- Shimmer Effect -->
+                            <div class="card-shimmer"></div>
+                            
+                            <!-- Card Content -->
+                            <div class="relative flex flex-col h-full p-6 z-10">
+                                <!-- Top section -->
+                                <div class="flex items-start justify-between mb-4">
+                                    <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-white font-bold text-xl"
+                                         style="background: linear-gradient(135deg, #dc2626, #ef4444); box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);">
+                                        SM
+                                    </div>
+                                    <!-- Credit card chip -->
+                                    <div class="card-chip w-8 h-6"></div>
+                                </div>
+
+                                <!-- Center content -->
+                                <div class="flex-1 flex flex-col justify-center space-y-3">
+                                    <div class="text-center">
+                                        <h2 class="font-bold tracking-wide text-white text-2xl card-text-shadow">
+                                            Sarah Miller
+                                        </h2>
+                                        <p class="font-medium uppercase tracking-wider text-sm mt-1 text-emerald-200">
+                                            Marketing Director
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Bottom section - Contact details -->
+                                <div class="grid grid-cols-2 gap-4 text-xs">
+                                    <div class="space-y-1 text-emerald-100">
+                                        <p class="font-medium">📧 sarah@company.com</p>
+                                        <p class="font-mono">📞 +1 (555) 987-6543</p>
+                                    </div>
+                                    <div class="space-y-1 text-right text-emerald-100">
+                                        <p>🌐 sarahmiller.com</p>
+                                        <p class="font-semibold">🏢 Marketing Pro</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card shine effect -->
+                            <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Enhanced Input Fields -->
+        <div class="bg-white rounded-xl shadow-lg p-8 max-w-4xl mx-auto">
+            <h3 class="text-2xl font-semibold mb-6 text-center">Enhanced Input Fields</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-800 mb-2 tracking-wide">
+                        Full Name *
+                    </label>
+                    <div class="relative">
+                        <input
+                            type="text"
+                            value="John Doe"
+                            class="w-full px-4 py-3 border rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-0 text-gray-900 placeholder-gray-400 bg-white/50 backdrop-blur-sm border-gray-200 focus:border-primary-500 focus:ring-primary-200/50 hover:border-gray-300 focus:bg-white"
+                            style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"
+                        />
+                        <div class="absolute inset-0 rounded-xl border-2 border-transparent pointer-events-none transition-all duration-200"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-800 mb-2 tracking-wide">
+                        Job Title
+                    </label>
+                    <div class="relative">
+                        <input
+                            type="text"
+                            value="Senior Software Developer"
+                            class="w-full px-4 py-3 border rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-0 text-gray-900 placeholder-gray-400 bg-white/50 backdrop-blur-sm border-gray-200 focus:border-primary-500 focus:ring-primary-200/50 hover:border-gray-300 focus:bg-white"
+                            style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"
+                        />
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-800 mb-2 tracking-wide">
+                        Email Address
+                    </label>
+                    <div class="relative">
+                        <input
+                            type="email"
+                            value="john.doe@very-long-company-name.com"
+                            class="w-full px-4 py-3 border rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-0 text-gray-900 placeholder-gray-400 bg-white/50 backdrop-blur-sm border-gray-200 focus:border-primary-500 focus:ring-primary-200/50 hover:border-gray-300 focus:bg-white"
+                            style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"
+                        />
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-800 mb-2 tracking-wide">
+                        Phone Number
+                    </label>
+                    <div class="relative">
+                        <input
+                            type="tel"
+                            value="+1 (555) 123-4567"
+                            class="w-full px-4 py-3 border rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-0 text-gray-900 placeholder-gray-400 bg-white/50 backdrop-blur-sm border-gray-200 focus:border-primary-500 focus:ring-primary-200/50 hover:border-gray-300 focus:bg-white"
+                            style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 p-4 bg-blue-50 rounded-xl">
+                <h4 class="font-semibold text-blue-900 mb-2">🎨 Styling Features:</h4>
+                <ul class="text-blue-800 text-sm space-y-1">
+                    <li>• Enhanced focus states with blur effects</li>
+                    <li>• Text overflow protection with ellipsis</li>
+                    <li>• Smooth transitions and hover effects</li>
+                    <li>• Professional styling with backdrop blur</li>
+                    <li>• Proper accessibility and usability</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center mt-12 text-gray-600">
+            <p>✨ Business Card Builder - Professional card design made easy</p>
+            <p class="text-sm mt-2">Credit card proportions: 3.5" × 2" (1.6:1 aspect ratio)</p>
+        </div>
+    </div>
+
+    <script>
+        // Add some interactivity
+        document.querySelectorAll('.credit-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                const cardFace = card.querySelector('.credit-card-face');
+                cardFace.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                const cardFace = card.querySelector('.credit-card-face');
+                cardFace.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+            });
+        });
+    </script>
+</body>
+</html> 

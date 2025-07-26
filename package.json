@@ -1,0 +1,25 @@
+{
+  "name": "business-card-builder",
+  "version": "1.0.0",
+  "description": "Business Card Builder with React frontend and fake JSON server",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && npm install && npm start",
+    "client": "cd client && npm run dev",
+    "setup": "cd server && npm install && cd ../client && npm install",
+    "server-only": "cd server && npm start",
+    "client-only": "cd client && npm run dev"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": [
+    "business-card",
+    "react",
+    "json-server",
+    "frontend",
+    "development"
+  ],
+  "author": "",
+  "license": "MIT"
+} 

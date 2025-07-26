@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Debug Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-card {
+            width: 350px;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            padding: 20px;
+            color: white;
+            margin: 20px 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .test-card h2 { margin: 0 0 10px 0; font-size: 24px; }
+        .test-card p { margin: 5px 0; opacity: 0.9; }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover { background: #45a049; }
+        .log { 
+            background: #f5f5f5; 
+            padding: 10px; 
+            border-radius: 5px; 
+            margin: 10px 0;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Export Functionality Debug Test</h1>
+    
+    <div id="test-card" class="test-card">
+        <h2>John Doe</h2>
+        <p>Senior Developer</p>
+        <p>Tech Solutions Inc.</p>
+        <p>📧 john.doe@techsolutions.com</p>
+        <p>📞 (555) 123-4567</p>
+        <p>🌐 www.techsolutions.com</p>
+    </div>
+    
+    <button onclick="testExportPNG()">Test PNG Export</button>
+    <button onclick="testBasicCanvas()">Test Basic Canvas</button>
+    <button onclick="clearLog()">Clear Log</button>
+    
+    <div id="log" class="log">
+        <strong>Debug Log:</strong><br>
+    </div>
+
+    <script>
+        function log(message) {
+            const logDiv = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            logDiv.innerHTML += `[${timestamp}] ${message}<br>`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+            console.log(message);
+        }
+
+        function clearLog() {
+            document.getElementById('log').innerHTML = '<strong>Debug Log:</strong><br>';
+        }
+
+        async function testBasicCanvas() {
+            log('Testing basic canvas functionality...');
+            
+            try {
+                const cardElement = document.getElementById('test-card');
+                log(`Card element found: ${cardElement ? 'Yes' : 'No'}`);
+                log(`Card dimensions: ${cardElement.offsetWidth}x${cardElement.offsetHeight}`);
+                
+                // Create a simple canvas
+                const canvas = document.createElement('canvas');
+                canvas.width = 350;
+                canvas.height = 200;
+                const ctx = canvas.getContext('2d');
+                
+                // Draw a simple rectangle
+                ctx.fillStyle = '#667eea';
+                ctx.fillRect(0, 0, 350, 200);
+                ctx.fillStyle = 'white';
+                ctx.font = '24px Arial';
+                ctx.fillText('Test Card', 20, 40);
+                
+                // Create download
+                const link = document.createElement('a');
+                link.download = 'test-basic.png';
+                link.href = canvas.toDataURL('image/png');
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                log('✅ Basic canvas export successful!');
+            } catch (error) {
+                log(`❌ Basic canvas failed: ${error.message}`);
+            }
+        }
+
+        async function testExportPNG() {
+            log('Testing PNG export with html2canvas...');
+            
+            try {
+                // Check if html2canvas is available
+                if (typeof html2canvas === 'undefined') {
+                    log('❌ html2canvas library not found. Loading from CDN...');
+                    
+                    // Load html2canvas from CDN
+                    const script = document.createElement('script');
+                    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+                    script.onload = () => {
+                        log('✅ html2canvas loaded from CDN');
+                        continueExportTest();
+                    };
+                    script.onerror = () => {
+                        log('❌ Failed to load html2canvas from CDN');
+                    };
+                    document.head.appendChild(script);
+                } else {
+                    log('✅ html2canvas is available');
+                    continueExportTest();
+                }
+            } catch (error) {
+                log(`❌ Export test failed: ${error.message}`);
+            }
+        }
+
+        async function continueExportTest() {
+            try {
+                const cardElement = document.getElementById('test-card');
+                log(`Card element: ${cardElement ? 'Found' : 'Not found'}`);
+                log(`Card visible: ${cardElement.offsetWidth > 0 && cardElement.offsetHeight > 0}`);
+                
+                log('Starting html2canvas...');
+                const canvas = await html2canvas(cardElement, {
+                    width: 350,
+                    height: 200,
+                    scale: 2,
+                    backgroundColor: '#ffffff',
+                    logging: true
+                });
+                
+                log(`Canvas generated: ${canvas.width}x${canvas.height}`);
+                
+                // Create download
+                const link = document.createElement('a');
+                link.download = 'test-export.png';
+                link.href = canvas.toDataURL('image/png');
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                log('✅ PNG export successful!');
+            } catch (error) {
+                log(`❌ PNG export failed: ${error.message}`);
+                log(`Error details: ${JSON.stringify(error)}`);
+            }
+        }
+
+        // Initial log
+        log('Export debug test page loaded');
+        log('Testing export functionality...');
+    </script>
+</body>
+</html> 

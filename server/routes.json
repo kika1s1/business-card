@@ -1,0 +1,11 @@
+{
+  "/api/cards": "/cards",
+  "/api/cards/:id": "/cards/:id",
+  
+  "/api/templates": "/templates",
+  "/api/templates/:id": "/templates/:id",
+  
+  "/api/admin/analytics": "/analytics",
+  "/api/admin/system-metrics": "/systemMetrics",
+  "/api/admin/template-analytics": "/analytics/popularTemplates"
+} 
